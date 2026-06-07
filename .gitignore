@@ -1,0 +1,14 @@
+# Dependencies
+node_modules/
+dist/
+
+# Browser profiles and logs
+chrome-profile/
+brave-profile/
+*_stdout.txt
+*_stderr.txt
+*.log
+
+# OS-specific
+.DS_Store
+Thumbs.db

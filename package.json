@@ -1,0 +1,14 @@
+{
+  "name": "your-name-scroll-animation",
+  "version": "1.0.0",
+  "description": "Interactive Scroll-Driven Animation Tribute to Your Name",
+  "main": "index.html",
+  "scripts": {
+    "dev": "vite --host",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "devDependencies": {
+    "vite": "^4.4.9"
+  }
+}

@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="A premium glassmorphic scroll-driven website experience for the masterpiece 'Your Name' (Kimi no Na wa) styled after clean minimalist interface designs.">
+  <title>Review of Your Name - Glassmorphic Scroll Experience</title>
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Noto+Serif+JP:wght@300;400;600;900&family=Cinzel:wght@400;600;700&display=swap" rel="stylesheet">
+  <!-- FontAwesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <!-- Custom Stylesheet -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Preloader Screen -->
+  <div id="preloader">
+    <div class="preloader-content">
+      <div class="logo-jp">君の名は。</div>
+      <h1 class="logo-en">YOUR NAME</h1>
+      <p class="preloader-subtitle">Loading memories...</p>
+      <div class="progress-container">
+        <div class="progress-bar" id="progress-bar"></div>
+      </div>
+      <div class="progress-text" id="progress-text">0%</div>
+    </div>
+  </div>
+
+  <!-- Sleek Pill-shaped Navigation Bar -->
+  <nav class="navbar" id="navbar">
+    <div class="nav-container">
+      <div class="nav-logo">
+        <span class="logo-text-jp">君の名は。</span>
+      </div>
+      <ul class="nav-links">
+        <li><a href="#description" class="nav-link">Description</a></li>
+        <li><a href="#playlist" class="nav-link">Playlist</a></li>
+        <li><a href="#profile" class="nav-link">Moral Story</a></li>
+        <li><a href="#memory-shadow-section" class="nav-link">Song</a></li>
+        <li><a href="#next-movie" class="nav-link">Next Movie</a></li>
+      </ul>
+      <div class="nav-actions">
+        <button class="music-toggle" id="music-toggle" aria-label="Toggle Sound">
+          <i class="fas fa-volume-mute" id="music-icon"></i>
+          <span class="music-label">Ambient Sound</span>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Interactive Scroll-Driven Section -->
+  <section class="hero-scroll-container" id="hero-scroll-container">
+    <div class="hero-sticky" id="hero-sticky">
+      <!-- Fullscreen scroll-scrubbed Canvas -->
+      <canvas id="scroll-canvas"></canvas>
+      
+      <!-- Glassmorphic Vignettes & Overlays -->
+      <div class="vignette-overlay"></div>
+      <div class="gradient-overlay"></div>
+      <div class="sky-tint-overlay"></div>
+
+      <!-- Mockup Glass Overlay Elements (Fades in dynamically at the end of the scroll animation) -->
+      <div class="mockup-overlay" id="mockup-overlay">
+        <!-- Top Title -->
+        <div class="mockup-top-title">
+          <span class="review-tag">Review Of</span>
+          <h1>Your Name</h1>
+        </div>
+
+        <!-- Floating Character Badges -->
+        <div class="floating-badge taki-badge" id="taki-badge">
+          <span>Taki Tachibana</span>
+        </div>
+        <div class="floating-badge mitsuha-badge" id="mitsuha-badge">
+          <span>Mitsuha Miyamizu</span>
+        </div>
+
+        <!-- Large Japanese Calligraphy & English Subtitle -->
+        <div class="mockup-center-title">
+          <div class="kanji-logo">君の名は。</div>
+          <div class="romanized-logo">Kimi No Na Wa</div>
+          <div class="english-logo">Your Name</div>
+        </div>
+
+        <!-- Meta Specification Capsules -->
+        <div class="mockup-meta">
+          <div class="meta-row-specs">
+            <span class="meta-capsule">2016</span>
+            <span class="meta-dot">..</span>
+            <span class="meta-capsule">Roman / Fantasi</span>
+            <span class="meta-dot">..</span>
+            <span class="meta-capsule">1 Hour 52 Minutes</span>
+          </div>
+          <div class="meta-row-rating">
+            <span class="rating-capsule"><i class="fa-solid fa-thumbs-up"></i> 96% Google users liked it</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Scrolling Mouse Indicator Prompt -->
+      <div class="scroll-hint" id="scroll-hint">
+        <span class="scroll-hint-text">Scroll to animate the stars</span>
+        <div class="scroll-mouse">
+          <div class="scroll-wheel"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Main Website Content (Styled exactly like the provided design layout) -->
+  <main class="main-content">
+    
+    <!-- Section 1: Film Description (Middle layout of the mockup) -->
+    <section class="content-section" id="description">
+      <div class="container">
+        <div class="story-grid">
+          <!-- Portrait Character Picture Card with white borders -->
+          <div class="story-visual">
+            <div class="visual-portrait-card">
+              <!-- Using frame 1 from our project images -->
+              <img src="ezgif-frame-001.jpg" alt="Taki and Mitsuha Back to Back" class="portrait-img">
+            </div>
+          </div>
+          
+          <!-- Translucent glassmorphic description card -->
+          <div class="story-description-card">
+            <p><strong>Your Name (2016)</strong> is a stunning Japanese animated romantic fantasy film written and directed by Makoto Shinkai, and produced by CoMix Wave Films. The film features beautiful character designs by Masayoshi Tanaka and a captivating musical score composed and performed by the rock band RADWIMPS.</p>
+            <p>It tells the emotionally rich story of high school students Taki Tachibana and Mitsuha Miyamizu, who find themselves mysteriously swapping bodies and forming a deep, spiritual connection across space and time.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 2: Highlight Gallery Playlist (Row of thumbnails + More button) -->
+    <section class="content-section alternate" id="playlist">
+      <div class="container">
+        <div class="section-badge">Memories Playlist</div>
+        <h2 class="section-title">Highlights Gallery</h2>
+        
+        <div class="gallery-layout">
+          <div class="gallery-grid">
+            <!-- Thumbnail 1 -->
+            <div class="gallery-item">
+              <img src="ezgif-frame-015.jpg" alt="Taki looking up">
+              <div class="gallery-caption">Chapter I: The Exchange</div>
+            </div>
+            <!-- Thumbnail 2 -->
+            <div class="gallery-item">
+              <img src="ezgif-frame-055.jpg" alt="Mitsuha turning head">
+              <div class="gallery-caption">Chapter II: The Search</div>
+            </div>
+            <!-- Thumbnail 3 -->
+            <div class="gallery-item">
+              <img src="ezgif-frame-100.jpg" alt="Taki and Mitsuha smiling">
+              <div class="gallery-caption">Chapter III: The Reunion</div>
+            </div>
+          </div>
+          
+          <!-- Circular Glass "More" Button -->
+          <div class="gallery-more-container">
+            <button class="more-btn" aria-label="View more details">
+              <div class="more-icon">
+                <i class="fa-solid fa-chevron-right"></i>
+              </div>
+              <span class="more-text">More</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 3: Moral Story Profile (Bottom quote block of the mockup) -->
+    <section class="content-section" id="profile">
+      <div class="container">
+        <div class="moral-story-container">
+          <h2 class="moral-title">Moral Story</h2>
+          <div class="moral-quote-card">
+            <p class="quote-text">"Human memory is indeed limited. But what stays in the heart is never truly consumed by time."</p>
+            <p class="quote-subtext">No matter how long, no matter the distance, and no matter how tangled the journey, sincerity in the heart will always find its way home.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 4: Next Movie Recommendation Section -->
+    <section class="content-section alternate" id="next-movie">
+      <div class="container">
+        <div class="section-badge">Up Next</div>
+        <h2 class="section-title">Explore Next Movie</h2>
+        
+        <div class="next-movie-card">
+          <div class="next-movie-image">
+            <div class="next-movie-placeholder">
+              <i class="fa-solid fa-cloud-showers-heavy"></i>
+            </div>
+          </div>
+          <div class="next-movie-info">
+            <span class="movie-category">DIRECTED BY MAKOTO SHINKAI</span>
+            <h3>Weathering With You</h3>
+            <p class="movie-jp-title">天気の子 (Tenki no Ko)</p>
+            <p class="movie-summary">A high school boy who has run away to Tokyo befriends an orphan girl who appears to be able to manipulate the weather. Together, they navigate a beautiful, rain-drenched metropolitan romance.</p>
+            <a href="#description" class="explore-btn">See Details <i class="fa-solid fa-arrow-right"></i></a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 5: Memory's Shadow Custom Song Player (User's Lyrics) -->
+    <section class="content-section" id="memory-shadow-section">
+      <div class="container">
+        <div class="section-badge">Original Song</div>
+        <h2 class="section-title">Memory's Shadow</h2>
+        
+        <div class="lyrics-player-card">
+          <!-- Left side: Lyrics display -->
+          <div class="lyrics-content" id="lyrics-content">
+            <div class="lyric-stanza active" data-time="0">
+              <p>I wake up and see another life,</p>
+              <p>This mind is once again touching the pages of memory.</p>
+              <p>I don't think anything, what kind of a game is this?</p>
+              <p>The time passes amidst the unknown crowd!</p>
+              <p>Today I will speak, break the silence,</p>
+              <p>Keep it hidden, I will tell you the hidden thing.</p>
+            </div>
+            
+            <div class="lyric-stanza" data-time="20">
+              <p class="lyrics-note">[Stretching memory and curiosity to find people]</p>
+              <p>Write some code on the diary page,</p>
+              <p>please explain Today my path has changed.</p>
+              <p>To whom are you writing this letter in this hollow of your mind?</p>
+              <p>Why is my mind crying in the name of unknown?</p>
+              <p>raise your hand,</p>
+              <p>Pass the time and come and stand beside me.</p>
+              <p>You will have to save, you will have to take all the responsibilities,</p>
+              <p>I will never let you forget my existence!</p>
+            </div>
+            
+            <div class="lyric-stanza" data-time="50">
+              <p>Today people are fighting all around, life is a war,</p>
+              <p>The memories are being washed away, the four sides are blocked today.</p>
+              <p>The two eyes came to a halt in the twilight light,</p>
+              <p>Are you the person who will erase all the sorrows?</p>
+              <p>Holding hands, I went to write the name today.</p>
+              <p>The name has been lost, I just want to "feel good"!</p>
+            </div>
+            
+            <div class="lyric-stanza" data-time="80">
+              <p>The window of a moving train, when you are next to me,</p>
+              <p>Today all the sorrows have ended, Manta laughs again.</p>
+              <p>I have remembered every feeling, won't hide anything else,</p>
+              <p>I am breaking the barriers of time and walking towards the light.</p>
+              <p>The fear of being lost is gone, the songs of victory have come -</p>
+              <p>Two lives have been won today after fighting with everything!</p>
+            </div>
+            
+            <div class="lyric-stanza" data-time="110">
+              <p>I saw that staircase today, I saw a face - after many years I found the book.</p>
+              <p>With tears in my eyes let me say just one thing -</p>
+              <p class="lyrics-climax">"What is your name? I have forgotten everything, I forget only you."</p>
+            </div>
+          </div>
+          
+          <!-- Right side: Visualizer and Interactive play button -->
+          <div class="lyrics-visualizer-container">
+            <canvas id="lyrics-visualizer"></canvas>
+            <button class="visualizer-play-btn" id="visualizer-play-btn">
+              <i class="fa-solid fa-play" id="viz-play-icon"></i>
+              <span id="viz-play-text">Bring the Song to Life</span>
+            </button>
+            <div class="visualizer-status" id="visualizer-status">Sound deactivated. Click to feel the beat.</div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Modern Clean Footer -->
+  <footer class="footer">
+    <div class="footer-container">
+      <div class="footer-logo">君の名は。</div>
+      <div class="footer-quote">
+        "I'm always searching for something, a person, a place... or just a memory."
+      </div>
+      <div class="footer-credits">
+        <p>&copy; 2026 Your Name Review Experience. Styled with premium glassmorphism layouts.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Background Lofi Audio -->
+  <audio id="bg-music" loop preload="auto">
+    <source src="memory-shadow.m4a" type="audio/mp4">
+  </audio>
+
+  <!-- Application Script -->
+  <script src="app.js"></script>
+</body>
+</html>

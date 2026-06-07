@@ -1,0 +1,1265 @@
+/* ==========================================================================
+   MINIMALIST GLASSMORPHISM DESIGN SYSTEM - REPLICA OF THE MOCKUP DESIGN
+   ========================================================================== */
+:root {
+  /* Fonts */
+  --font-sans: 'Outfit', sans-serif;
+  --font-serif: 'Cinzel', serif;
+  --font-jp: 'Noto Serif JP', serif;
+  
+  /* Color Palette - Deep Space & Glassmorphism */
+  --bg-deep: #05050b;
+  --bg-dark: #090913;
+  --bg-glass: rgba(255, 255, 255, 0.06);
+  --bg-glass-hover: rgba(255, 255, 255, 0.12);
+  
+  /* Glass Border & Shadows (Mockup specifies clean light borders) */
+  --glass-border: rgba(255, 255, 255, 0.15);
+  --glass-border-hover: rgba(255, 255, 255, 0.3);
+  --glass-shadow: 0 10px 40px 0 rgba(0, 0, 0, 0.4);
+  
+  --text-main: #ffffff;
+  --text-muted: #bdc3c7;
+  
+  /* Accent colors */
+  --color-taki: #3498db;
+  --color-mitsuha: #e74c3c;
+  
+  /* Gradients */
+  --grad-glass: linear-gradient(135deg, rgba(255, 255, 255, 0.12) 0%, rgba(255, 255, 255, 0.03) 100%);
+  --grad-sky-section: linear-gradient(180deg, var(--bg-deep) 0%, #152542 50%, var(--bg-deep) 100%);
+}
+
+/* ==========================================================================
+   BASE STYLES & RESET
+   ========================================================================== */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255, 255, 255, 0.2) var(--bg-deep);
+}
+
+body {
+  font-family: var(--font-sans);
+  background-color: #0b0f26; /* Deep navy sky base */
+  color: var(--text-main);
+  overflow-x: hidden;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Custom Scrollbar */
+body::-webkit-scrollbar {
+  width: 6px;
+}
+body::-webkit-scrollbar-track {
+  background: var(--bg-deep);
+}
+body::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 10px;
+}
+body::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.4);
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* ==========================================================================
+   PRELOADER SCREEN
+   ========================================================================== */
+#preloader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #0d122e;
+  z-index: 9999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: opacity 1s cubic-bezier(0.25, 1, 0.5, 1), visibility 1s;
+}
+
+#preloader.fade-out {
+  opacity: 0;
+  visibility: hidden;
+}
+
+.preloader-content {
+  text-align: center;
+  width: 90%;
+  max-width: 400px;
+}
+
+.logo-jp {
+  font-family: var(--font-jp);
+  font-size: 2.5rem;
+  font-weight: 300;
+  letter-spacing: 0.8rem;
+  color: #fff;
+  margin-bottom: 0.5rem;
+  text-indent: 0.8rem;
+}
+
+.logo-en {
+  font-family: var(--font-serif);
+  font-size: 1.1rem;
+  font-weight: 400;
+  letter-spacing: 0.8rem;
+  color: var(--text-muted);
+  margin-bottom: 2.5rem;
+  text-indent: 0.8rem;
+}
+
+.preloader-subtitle {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.25rem;
+  color: var(--text-muted);
+  margin-bottom: 1rem;
+  opacity: 0.6;
+}
+
+.progress-container {
+  width: 100%;
+  height: 1px;
+  background: rgba(255, 255, 255, 0.05);
+  margin-bottom: 0.75rem;
+  position: relative;
+}
+
+.progress-bar {
+  width: 0%;
+  height: 100%;
+  background: var(--text-main);
+  transition: width 0.1s linear;
+}
+
+.progress-text {
+  font-size: 0.75rem;
+  font-weight: 300;
+  color: var(--text-muted);
+  letter-spacing: 0.05rem;
+}
+
+/* ==========================================================================
+   NAVIGATION BAR (Glassmorphism Pill Layout)
+   ========================================================================== */
+.navbar {
+  position: fixed;
+  top: 1.5rem;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 90%;
+  max-width: 1200px;
+  z-index: 1000;
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+  border: 1px solid var(--glass-border);
+  border-radius: 50px;
+  transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.nav-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.75rem 2rem;
+  width: 100%;
+}
+
+.navbar.scrolled {
+  top: 0;
+  width: 100%;
+  max-width: 100%;
+  border-radius: 0;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  background: rgba(5, 5, 11, 0.75);
+  border-bottom: 1px solid var(--glass-border);
+  backdrop-filter: blur(25px);
+  -webkit-backdrop-filter: blur(25px);
+}
+
+.logo-text-jp {
+  font-family: var(--font-jp);
+  font-size: 1.15rem;
+  font-weight: 600;
+  letter-spacing: 0.05rem;
+  color: #fff;
+}
+
+.nav-links {
+  display: flex;
+  list-style: none;
+  gap: 0.5rem;
+}
+
+.nav-link {
+  font-size: 0.8rem;
+  font-weight: 400;
+  letter-spacing: 0.05rem;
+  color: rgba(255, 255, 255, 0.75);
+  padding: 0.5rem 1.2rem;
+  border-radius: 30px;
+  transition: all 0.3s ease;
+  display: block;
+}
+
+.nav-link:hover {
+  color: #fff;
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.music-toggle {
+  background: transparent;
+  border: none;
+  color: rgba(255, 255, 255, 0.75);
+  font-family: var(--font-sans);
+  font-size: 0.75rem;
+  font-weight: 400;
+  letter-spacing: 0.05rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  border-radius: 30px;
+  transition: all 0.3s ease;
+}
+
+.music-toggle:hover {
+  color: #fff;
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.music-toggle.playing {
+  color: #fff;
+  background: rgba(255, 255, 255, 0.12);
+}
+
+/* ==========================================================================
+   SCROLL HERO CONTAINER
+   ========================================================================== */
+.hero-scroll-container {
+  position: relative;
+  height: 450vh;
+  background-color: var(--bg-deep);
+  z-index: 10;
+}
+
+.hero-sticky {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  width: 100vw;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#scroll-canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+  z-index: 1;
+  pointer-events: none;
+}
+
+/* Vignette overlays */
+.vignette-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle at center, transparent 40%, rgba(5, 5, 11, 0.8) 100%);
+  z-index: 2;
+  pointer-events: none;
+}
+
+.gradient-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 20vh;
+  background: linear-gradient(180deg, transparent, var(--bg-deep));
+  z-index: 3;
+  pointer-events: none;
+}
+
+.sky-tint-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to bottom, rgba(52, 152, 219, 0.02), rgba(245, 183, 177, 0.02));
+  z-index: 2;
+  pointer-events: none;
+}
+
+/* ==========================================================================
+   MOCKUP GLASS OVERLAY ELEMENTS (Fades in dynamically at scroll completion)
+   ========================================================================== */
+.mockup-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 10;
+  pointer-events: none;
+  box-sizing: border-box;
+}
+
+/* Base states for animations */
+.mockup-top-title,
+.floating-badge,
+.mockup-center-title,
+.mockup-meta {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 1s cubic-bezier(0.215, 0.610, 0.355, 1),
+              transform 1s cubic-bezier(0.215, 0.610, 0.355, 1);
+}
+
+/* Active animation trigger */
+.mockup-overlay.active .mockup-top-title,
+.mockup-overlay.active .floating-badge,
+.mockup-overlay.active .mockup-center-title,
+.mockup-overlay.active .mockup-meta {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Top title block */
+.mockup-top-title {
+  position: absolute;
+  top: 8rem;
+  left: 8%;
+  text-align: left;
+  transition-delay: 0.1s;
+}
+
+.review-tag {
+  font-family: var(--font-sans);
+  font-size: 1.6rem;
+  font-weight: 300;
+  letter-spacing: 0.05rem;
+  color: #fff;
+  opacity: 0.9;
+  display: block;
+  margin-bottom: -0.2rem;
+}
+
+.mockup-top-title h1 {
+  font-family: var(--font-sans);
+  font-size: 2.8rem;
+  font-weight: 700;
+  color: #fff;
+  letter-spacing: 0.05rem;
+}
+
+/* Floating Character Badges */
+.floating-badge {
+  position: absolute;
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  border-radius: 40px;
+  padding: 0.5rem 1.4rem;
+  color: #fff;
+  font-size: 0.85rem;
+  font-weight: 500;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.25);
+}
+
+.taki-badge {
+  top: 42%;
+  left: 8%;
+  transition-delay: 0.3s;
+}
+
+.mitsuha-badge {
+  top: 65%;
+  right: 8%;
+  transition-delay: 0.5s;
+}
+
+.taki-badge::before,
+.mitsuha-badge::before {
+  content: '';
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  margin-right: 0.5rem;
+  vertical-align: middle;
+}
+
+.taki-badge::before { background: var(--color-taki); }
+.mitsuha-badge::before { background: var(--color-mitsuha); }
+
+/* Center Calligraphy Logo */
+.mockup-center-title {
+  position: absolute;
+  bottom: 11rem;
+  right: 8%;
+  text-align: right;
+  transition-delay: 0.7s;
+}
+
+.kanji-logo {
+  font-family: var(--font-jp);
+  font-size: 4.8rem;
+  font-weight: 300;
+  color: #fff;
+  letter-spacing: 0.4rem;
+  opacity: 0.95;
+  line-height: 1.1;
+  margin-bottom: 0.5rem;
+}
+
+.romanized-logo {
+  font-family: var(--font-sans);
+  font-size: 1.3rem;
+  font-weight: 300;
+  letter-spacing: 0.1rem;
+  color: #fff;
+  opacity: 0.8;
+}
+
+.english-logo {
+  font-family: var(--font-sans);
+  font-size: 1rem;
+  font-weight: 300;
+  letter-spacing: 0.08rem;
+  color: var(--text-muted);
+}
+
+/* Bottom Metadata Specs */
+.mockup-meta {
+  position: absolute;
+  bottom: 8rem;
+  left: 8%;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  text-align: left;
+  transition-delay: 0.9s;
+}
+
+.meta-row-specs {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.95);
+  font-weight: 300;
+}
+
+.meta-capsule {
+  opacity: 0.95;
+}
+
+.meta-dot {
+  opacity: 0.5;
+}
+
+.rating-capsule {
+  display: inline-block;
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  font-weight: 300;
+}
+
+.rating-capsule i {
+  color: #fff;
+  margin-right: 0.3rem;
+}
+
+/* Scroll Mouse Hint */
+.scroll-hint {
+  position: absolute;
+  bottom: 2.5rem;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  pointer-events: none;
+  transition: opacity 0.5s ease;
+}
+
+.scroll-hint.hidden {
+  opacity: 0;
+}
+
+.scroll-hint-text {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.2rem;
+  color: var(--text-muted);
+  opacity: 0.7;
+}
+
+.scroll-mouse {
+  width: 18px;
+  height: 28px;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  border-radius: 10px;
+  position: relative;
+}
+
+.scroll-wheel {
+  width: 2px;
+  height: 5px;
+  background-color: #fff;
+  border-radius: 2px;
+  position: absolute;
+  top: 5px;
+  left: 50%;
+  transform: translateX(-50%);
+  animation: mouseWheelScroll 1.8s infinite ease-in-out;
+}
+
+/* ==========================================================================
+   MAIN CONTENT SECTIONS
+   ========================================================================== */
+.main-content {
+  position: relative;
+  background-image: linear-gradient(rgba(5, 5, 11, 0.35), rgba(5, 5, 11, 0.35)), url('sky-background.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  z-index: 20;
+}
+
+.content-section {
+  padding: 8rem 0;
+  border-bottom: 1px solid var(--glass-border);
+  position: relative;
+}
+
+.content-section.alternate {
+  background: rgba(255, 255, 255, 0.01);
+}
+
+.container {
+  width: 86%;
+  max-width: 1080px;
+  margin: 0 auto;
+}
+
+.section-badge {
+  display: inline-block;
+  font-size: 0.7rem;
+  font-weight: 400;
+  text-transform: uppercase;
+  letter-spacing: 0.2rem;
+  color: var(--text-muted);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 0.3rem 1rem;
+  border-radius: 4px;
+  margin-bottom: 1.5rem;
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.section-title {
+  font-family: var(--font-serif);
+  font-size: 2.2rem;
+  font-weight: 400;
+  margin-bottom: 4rem;
+  letter-spacing: 0.1rem;
+  color: #fff;
+  text-transform: uppercase;
+}
+
+/* ==========================================================================
+   SECTION 1: FILM OVERVIEW (Synopsis Grid)
+   ========================================================================== */
+#description {
+  /* Inherits fixed twilight sky background from .main-content */
+}
+
+.story-grid {
+  display: grid;
+  grid-template-columns: 0.85fr 1.15fr;
+  gap: 5rem;
+  align-items: center;
+}
+
+/* Portrait image container with thick white borders */
+.story-visual {
+  position: relative;
+  display: flex;
+  justify-content: center;
+}
+
+.visual-portrait-card {
+  width: 100%;
+  max-width: 320px;
+  border: 6px solid #ffffff;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
+  background: #ffffff;
+  aspect-ratio: 3 / 4;
+}
+
+.portrait-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* Glassmorphic description card */
+.story-description-card {
+  background: var(--grad-glass);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid var(--glass-border);
+  border-radius: 20px;
+  padding: 3.5rem 3rem;
+  box-shadow: var(--glass-shadow);
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.story-description-card p {
+  font-size: 0.95rem;
+  color: var(--text-muted);
+  line-height: 1.7;
+  font-weight: 300;
+}
+
+.story-description-card strong {
+  color: #fff;
+  font-weight: 500;
+}
+
+/* ==========================================================================
+   SECTION 2: HIGHLIGHT PLAYLIST GALLERY
+   ========================================================================== */
+.gallery-layout {
+  display: flex;
+  align-items: center;
+  gap: 3rem;
+}
+
+.gallery-grid {
+  flex: 1;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+}
+
+.gallery-item {
+  background: var(--grad-glass);
+  border: 1px solid var(--glass-border);
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: var(--glass-shadow);
+  transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+  position: relative;
+  aspect-ratio: 16 / 10;
+}
+
+.gallery-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.6s ease;
+}
+
+.gallery-caption {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background: rgba(5, 5, 11, 0.6);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  padding: 0.6rem 1rem;
+  font-size: 0.75rem;
+  color: #fff;
+  text-align: center;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.gallery-item:hover {
+  transform: translateY(-5px);
+  border-color: var(--glass-border-hover);
+}
+
+.gallery-item:hover img {
+  transform: scale(1.05);
+}
+
+/* Circular More button container */
+.gallery-more-container {
+  flex-shrink: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.more-btn {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.6rem;
+  outline: none;
+}
+
+.more-icon {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #fff;
+  font-size: 0.95rem;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  transition: all 0.4s ease;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+}
+
+.more-text {
+  font-family: var(--font-sans);
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1rem;
+  color: var(--text-muted);
+  transition: color 0.3s ease;
+}
+
+.more-btn:hover .more-icon {
+  background: rgba(255, 255, 255, 0.15);
+  border-color: rgba(255, 255, 255, 0.4);
+  transform: scale(1.08);
+}
+
+.more-btn:hover .more-text {
+  color: #fff;
+}
+
+/* ==========================================================================
+   SECTION 3: MORAL STORY (Quote Block)
+   ========================================================================== */
+.moral-story-container {
+  text-align: center;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.moral-title {
+  font-family: var(--font-sans);
+  font-size: 2.2rem;
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 2rem;
+  text-transform: capitalize;
+}
+
+.moral-quote-card {
+  background: var(--grad-glass);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid var(--glass-border);
+  border-radius: 24px;
+  padding: 4rem 3.5rem;
+  box-shadow: var(--glass-shadow);
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.quote-text {
+  font-family: var(--font-sans);
+  font-size: 1.6rem;
+  font-weight: 300;
+  color: #fff;
+  line-height: 1.5;
+  font-style: italic;
+}
+
+.quote-subtext {
+  font-family: var(--font-sans);
+  font-size: 0.95rem;
+  color: var(--text-muted);
+  line-height: 1.7;
+  font-weight: 300;
+  max-width: 620px;
+  margin: 0 auto;
+}
+
+/* ==========================================================================
+   SECTION 4: NEXT MOVIE RECOMMENDATION
+   ========================================================================== */
+.next-movie-card {
+  display: grid;
+  grid-template-columns: 0.7fr 1.3fr;
+  background: var(--grad-glass);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid var(--glass-border);
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: var(--glass-shadow);
+}
+
+.next-movie-image {
+  background: linear-gradient(135deg, #2c3e50, #090913);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  min-height: 280px;
+  border-right: 1px solid var(--glass-border);
+}
+
+.next-movie-placeholder {
+  font-size: 3.5rem;
+  color: rgba(255, 255, 255, 0.15);
+  animation: pulse 3s infinite ease-in-out;
+}
+
+.next-movie-info {
+  padding: 3.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.movie-category {
+  display: block;
+  font-size: 0.65rem;
+  font-weight: 500;
+  letter-spacing: 0.15rem;
+  color: var(--text-muted);
+  margin-bottom: 0.5rem;
+  text-transform: uppercase;
+}
+
+.next-movie-info h3 {
+  font-family: var(--font-sans);
+  font-size: 1.8rem;
+  font-weight: 600;
+  color: #fff;
+  margin-bottom: 0.1rem;
+}
+
+.movie-jp-title {
+  font-family: var(--font-jp);
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  margin-bottom: 1.5rem;
+}
+
+.movie-summary {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  line-height: 1.6;
+  font-weight: 300;
+  margin-bottom: 2rem;
+}
+
+.explore-btn {
+  align-self: flex-start;
+  font-size: 0.8rem;
+  font-weight: 500;
+  letter-spacing: 0.05rem;
+  color: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  padding: 0.6rem 1.4rem;
+  border-radius: 4px;
+  background: rgba(255, 255, 255, 0.05);
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.explore-btn:hover {
+  background: rgba(255, 255, 255, 0.15);
+  border-color: rgba(255, 255, 255, 0.4);
+}
+
+/* ==========================================================================
+   FOOTER (Clean & Minimalist)
+   ========================================================================== */
+.footer {
+  background: #030307;
+  border-top: 1px solid var(--glass-border);
+  padding: 5rem 0;
+  text-align: center;
+  position: relative;
+  z-index: 20;
+}
+
+.footer-container {
+  width: 90%;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.footer-logo {
+  font-family: var(--font-jp);
+  font-size: 1.8rem;
+  font-weight: 300;
+  letter-spacing: 0.4rem;
+  color: #fff;
+  margin-bottom: 1.2rem;
+  opacity: 0.8;
+}
+
+.footer-quote {
+  font-family: var(--font-serif);
+  font-size: 1rem;
+  color: var(--text-muted);
+  font-style: italic;
+  margin-bottom: 2.5rem;
+  font-weight: 300;
+  letter-spacing: 0.05rem;
+}
+
+.footer-credits {
+  font-size: 0.75rem;
+  color: rgba(255, 255, 255, 0.15);
+  font-weight: 300;
+}
+
+/* ==========================================================================
+   KEYFRAME ANIMATIONS
+   ========================================================================== */
+@keyframes mouseWheelScroll {
+  0% {
+    top: 5px;
+    opacity: 1;
+    height: 5px;
+  }
+  50% {
+    top: 13px;
+    opacity: 0.3;
+    height: 3px;
+  }
+  100% {
+    top: 5px;
+    opacity: 0;
+    height: 5px;
+  }
+}
+
+@keyframes rotateClockwise {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+@keyframes rotateCounter {
+  0% { transform: rotate(360deg); }
+  100% { transform: rotate(0deg); }
+}
+
+@keyframes pulse {
+  0% { opacity: 0.4; }
+  50% { opacity: 0.8; }
+  100% { opacity: 0.4; }
+}
+
+/* ==========================================================================
+   SECTION 5: LYRICS PLAYER SECTION
+   ========================================================================== */
+.lyrics-player-card {
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr;
+  gap: 4rem;
+  align-items: flex-start;
+}
+
+.lyrics-content {
+  background: var(--grad-glass);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid var(--glass-border);
+  border-radius: 20px;
+  padding: 4rem;
+  box-shadow: var(--glass-shadow);
+  max-height: 520px;
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255, 255, 255, 0.15) transparent;
+}
+
+.lyrics-content::-webkit-scrollbar {
+  width: 4px;
+}
+.lyrics-content::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 4px;
+}
+
+.lyric-stanza {
+  opacity: 0.25;
+  transform: scale(0.98);
+  transform-origin: left center;
+  transition: opacity 0.6s ease, transform 0.6s ease, text-shadow 0.1s ease;
+  margin-bottom: 2.5rem;
+}
+
+.lyric-stanza:last-child {
+  margin-bottom: 0;
+}
+
+.lyric-stanza.active {
+  opacity: 1;
+  transform: scale(1.02);
+}
+
+.lyric-stanza p {
+  font-size: 1.05rem;
+  color: #fff;
+  line-height: 1.8;
+  font-weight: 300;
+  margin-bottom: 0.4rem;
+}
+
+.lyrics-note {
+  font-size: 0.85rem !important;
+  color: var(--text-muted) !important;
+  font-style: italic;
+  margin-bottom: 0.8rem !important;
+}
+
+.lyrics-climax {
+  font-family: var(--font-serif);
+  font-size: 1.25rem !important;
+  font-style: italic;
+  color: #fff !important;
+}
+
+/* Visualizer Sidebar */
+.lyrics-visualizer-container {
+  background: var(--grad-glass);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid var(--glass-border);
+  border-radius: 20px;
+  padding: 3rem 2.5rem;
+  box-shadow: var(--glass-shadow);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+  text-align: center;
+  min-height: 320px;
+}
+
+#lyrics-visualizer {
+  width: 100%;
+  height: 100px;
+  display: block;
+}
+
+.visualizer-play-btn {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  border-radius: 40px;
+  padding: 1rem 2rem;
+  color: #fff;
+  font-family: var(--font-sans);
+  font-weight: 500;
+  font-size: 0.95rem;
+  letter-spacing: 0.05rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  outline: none;
+}
+
+.visualizer-play-btn:hover {
+  background: rgba(255, 255, 255, 0.18);
+  border-color: rgba(255, 255, 255, 0.45);
+  transform: scale(1.05);
+}
+
+.visualizer-play-btn:active {
+  transform: scale(0.98);
+}
+
+.visualizer-status {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  font-weight: 300;
+}
+
+/* ==========================================================================
+   RESPONSIVE MEDIA QUERIES
+   ========================================================================== */
+@media (max-width: 1024px) {
+  .lyrics-player-card {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+  }
+  .lyrics-content {
+    padding: 2.5rem 1.5rem;
+    max-height: 400px;
+  }
+  .story-grid {
+    grid-template-columns: 1fr;
+    gap: 4rem;
+  }
+  .story-visual {
+    max-width: 320px;
+    margin: 0 auto;
+    width: 100%;
+  }
+  .gallery-layout {
+    flex-direction: column;
+    gap: 2.5rem;
+  }
+  .gallery-grid {
+    width: 100%;
+  }
+  .next-movie-card {
+    grid-template-columns: 1fr;
+  }
+  .next-movie-image {
+    min-height: 200px;
+    border-right: none;
+    border-bottom: 1px solid var(--glass-border);
+  }
+}
+
+@media (max-width: 768px) {
+  .nav-links {
+    display: none;
+  }
+  .section-title {
+    font-size: 1.8rem;
+    margin-bottom: 3rem;
+  }
+  .gallery-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+  .mockup-top-title {
+    top: 7rem;
+    left: 5%;
+  }
+  .mockup-top-title h1 {
+    font-size: 2.2rem;
+  }
+  .review-tag {
+    font-size: 1.2rem;
+  }
+  .floating-badge {
+    padding: 0.4rem 1.1rem;
+    font-size: 0.75rem;
+  }
+  .taki-badge {
+    top: 38%;
+    left: 5%;
+  }
+  .mitsuha-badge {
+    top: 70%;
+    right: 5%;
+  }
+  .mockup-center-title {
+    bottom: 9rem;
+    right: 5%;
+  }
+  .kanji-logo {
+    font-size: 3.5rem;
+    letter-spacing: 0.2rem;
+  }
+  .romanized-logo {
+    font-size: 1.1rem;
+  }
+  .mockup-meta {
+    bottom: 7rem;
+    left: 5%;
+  }
+  .meta-row-specs {
+    font-size: 0.8rem;
+    gap: 0.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .navbar {
+    padding: 0.5rem 1rem;
+    top: 1rem;
+    width: 95%;
+  }
+  .nav-container {
+    padding: 0.5rem;
+  }
+  .music-toggle span {
+    display: none;
+  }
+  .music-toggle {
+    padding: 0.4rem;
+  }
+  .story-description-card {
+    padding: 2.5rem 1.5rem;
+  }
+  .moral-quote-card {
+    padding: 3rem 1.5rem;
+  }
+  .quote-text {
+    font-size: 1.2rem;
+  }
+  .next-movie-info {
+    padding: 2rem 1.5rem;
+  }
+  .next-movie-info h3 {
+    font-size: 1.5rem;
+  }
+  .kanji-logo {
+    font-size: 2.8rem;
+  }
+  .romanized-logo {
+    font-size: 1rem;
+  }
+  .meta-row-specs {
+    flex-wrap: wrap;
+  }
+}
