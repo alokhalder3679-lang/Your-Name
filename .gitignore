@@ -1,14 +1,28 @@
 # Dependencies
 node_modules/
+npm-debug.log*
+
+# Build output
 dist/
+dist-ssr/
 
-# Browser profiles and logs
-chrome-profile/
+# Local env files
+*.local
+.env
+
+# Browser debug profiles (not needed in repo)
 brave-profile/
-*_stdout.txt
-*_stderr.txt
-*.log
+chrome-profile/
 
-# OS-specific
+# Browser debug logs
+brave_stdout.txt
+brave_stderr.txt
+chrome_stdout.txt
+chrome_stderr.txt
+
+# Editor / OS files
 .DS_Store
 Thumbs.db
+.vscode/
+.idea/
+*.sw[p-z]
