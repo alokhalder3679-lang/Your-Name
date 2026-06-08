@@ -13,9 +13,7 @@ const LERP_FACTOR = 0.08; // Control scrubbing smoothness (lower is smoother)
 // Element References
 const canvas = document.getElementById('scroll-canvas');
 const ctx = canvas.getContext('2d');
-const preloader = document.getElementById('preloader');
-const progressBar = document.getElementById('progress-bar');
-const progressText = document.getElementById('progress-text');
+
 const container = document.getElementById('hero-scroll-container');
 const scrollHint = document.getElementById('scroll-hint');
 const navbar = document.getElementById('navbar');
@@ -46,42 +44,18 @@ const imagePaths = Array.from({ length: TOTAL_FRAMES }, (_, i) => {
 });
 
 // ==========================================================================
-// IMAGE PRELOADER
+// IMAGE LOADER (silent background loading)
 // ==========================================================================
-function initPreloader(onComplete) {
+function loadImages() {
   imagePaths.forEach((path, index) => {
     const img = new Image();
     img.src = path;
-    
-    img.onload = () => {
-      images[index] = img;
-      handleImageLoadProgress(onComplete);
-    };
-    
+    img.onload = () => { images[index] = img; };
     img.onerror = () => {
       console.warn(`Failed to load frame: ${path}. Creating fallback placeholder.`);
-      // Generate a temporary fallback canvas color if image fails to load
       images[index] = createFallbackPlaceholder(path);
-      handleImageLoadProgress(onComplete);
     };
   });
-}
-
-function handleImageLoadProgress(onComplete) {
-  loadedImagesCount++;
-  const percent = Math.floor((loadedImagesCount / TOTAL_FRAMES) * 100);
-  
-  // Update loading bar UI
-  progressBar.style.width = `${percent}%`;
-  progressText.textContent = `${percent}%`;
-  
-  if (loadedImagesCount === TOTAL_FRAMES) {
-    // Smooth transition from loading screen to active experience
-    setTimeout(() => {
-      preloader.classList.add('fade-out');
-      onComplete();
-    }, 800);
-  }
 }
 
 // Fallback image in case of load failures
@@ -387,12 +361,11 @@ function initAudioVisualizer() {
 // ENTRY POINT / INITIALIZATION
 // ==========================================================================
 document.addEventListener('DOMContentLoaded', () => {
-  initPreloader(() => {
-    resizeCanvas();
-    window.addEventListener('resize', resizeCanvas);
-    window.addEventListener('scroll', handleScroll);
-    handleScroll();
-    setupAudio();
-    requestAnimationFrame(animationLoop);
-  });
+  loadImages();
+  resizeCanvas();
+  window.addEventListener('resize', resizeCanvas);
+  window.addEventListener('scroll', handleScroll);
+  handleScroll();
+  setupAudio();
+  requestAnimationFrame(animationLoop);
 });
